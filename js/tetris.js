@@ -1,3 +1,9 @@
+/*
+ *  Desarrollo por Maximiliano Brignone © 2022
+ *  https://github.com/mbrignone93
+ *
+ * */
+
 const BLOCKS = {
 	O: [
 		[[0, 0], [0, 1], [1, 0], [1, 1]],
