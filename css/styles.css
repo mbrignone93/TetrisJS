@@ -17,7 +17,6 @@ body {
 	background: url("../img/bg.jpeg");
 	background-repeat: no-repeat;
 	background-size: cover;
-	background-position: center;
 }
 
 .playground {
@@ -27,6 +26,7 @@ body {
 }
 
 .pause-text {
+	z-index: 1000;
 	display: none;
 	text-align: center;
 	flex-direction: column;
@@ -42,6 +42,7 @@ body {
 }
 
 .game-text {
+	z-index: 1000;
 	display: none;
 	justify-content: center;
 	align-items: center;

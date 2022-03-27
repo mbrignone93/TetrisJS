@@ -8,16 +8,17 @@
     <title>Tetris JS</title>
 	<link href="img/icon.png" rel="icon">
 	<link rel="stylesheet" href="css/styles.css">
+	<link rel="stylesheet" href="css/animate.css">
 </head>
 <body>
 	<div class="wrapper">
-		<div class="pause-text"><br><br><br><br><br><span>Pause</span></div>
+		<div class="pause-text"><br><br><br><br><br><span>Pause. <br>Press Key P to Continue</span></div>
 		<div class="game-text">
-			<span>Game Over!</span>
-			<button>Play Again</button>
+			<span class="animated tada">Game Over!</span>
+			<button class="animated tada">Play Again</button>
 		</div>
 		<div class="score">Score: 0</div>
-		<div class="playground">
+		<div class="playground animated flipInX">
 			<ul></ul>
 		</div>
 	</div>

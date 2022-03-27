@@ -60,7 +60,7 @@ const GAME_ROWS = 20;
 const GAME_COLS = 10;
 
 let score = 0;
-let duration = 900;
+let duration = 300; // speed tick
 let downInterval;
 let tempMovingItem;
 let gamePaused = false;
