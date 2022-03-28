@@ -60,10 +60,12 @@ const GAME_ROWS = 20;
 const GAME_COLS = 10;
 
 let score = 0;
-let duration = 300; // speed tick
+let duration = 500; // speed tick
 let downInterval;
 let tempMovingItem;
 let gamePaused = false;
+let numberLines = 0;
+let level = 1;
 
 const movingItem = {
 	type: "",
@@ -119,8 +121,7 @@ function checkMatch() {
 		if (matched) {
 			child.remove();
 			prependNewLine();
-			score++;
-			scoreDisplay.innerText = "Score: " + score;
+			numberLines++;
 		}
 	});
 
@@ -141,6 +142,29 @@ function seizeBlock() {
 function generateNewBlock() {
 	
 	if (!gamePaused) {
+
+		// set score and reset number lines
+		switch(numberLines) {
+			case 1:
+				score = score + (level * 100);
+				break;
+			case 2:
+				score = score + (level * 300);
+				break;
+			case 3:
+				score = score + (level * 500);
+				break;
+			case 4:
+				score = score + (level * 800);
+				break;
+			default:
+				score = score + 10;
+				break;
+		}
+
+		scoreDisplay.innerText = "Score: " + score;
+		numberLines = 0;
+
 		// set tick
 		clearInterval(downInterval);
 		downInterval = setInterval(() => {
