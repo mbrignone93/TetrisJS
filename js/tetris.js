@@ -54,18 +54,22 @@ const playground = document.querySelector(".playground > ul");
 const gameText = document.querySelector(".game-text");
 const pauseText = document.querySelector(".pause-text");
 const scoreDisplay = document.querySelector(".score");
+const levelDisplay = document.querySelector(".level");
 const playAgainButton = document.querySelector(".game-text > button");
 
 const GAME_ROWS = 20;
 const GAME_COLS = 10;
 
 let score = 0;
-let duration = 500; // speed tick
+let duration = 1000; // initial speed tick
 let downInterval;
 let tempMovingItem;
 let gamePaused = false;
 let numberLines = 0;
+let numberLinesPerLevel = 0;
 let level = 1;
+
+levelDisplay.innerText = "Level: " + level;
 
 const movingItem = {
 	type: "",
@@ -122,6 +126,7 @@ function checkMatch() {
 			child.remove();
 			prependNewLine();
 			numberLines++;
+			numberLinesPerLevel++;
 		}
 	});
 
@@ -136,6 +141,9 @@ function seizeBlock() {
 		moving.classList.add("seized");
 	});
 
+	score = score + 10;
+	scoreDisplay.innerText = "Score: " + score;
+
 	checkMatch();
 }
 
@@ -146,23 +154,95 @@ function generateNewBlock() {
 		// set score and reset number lines
 		switch(numberLines) {
 			case 1:
-				score = score + (level * 100);
+				score = score + (level * 100) - 10;
+				scoreDisplay.innerText = "Score: " + score;
 				break;
 			case 2:
-				score = score + (level * 300);
+				score = score + (level * 300) - 10;
+				scoreDisplay.innerText = "Score: " + score;
 				break;
 			case 3:
-				score = score + (level * 500);
+				score = score + (level * 500) - 10;
+				scoreDisplay.innerText = "Score: " + score;
 				break;
 			case 4:
-				score = score + (level * 800);
-				break;
-			default:
-				score = score + 10;
+				score = score + (level * 800) - 10;
+				scoreDisplay.innerText = "Score: " + score;
 				break;
 		}
+		
+		// set level 2
+		if (numberLinesPerLevel >= 20 && level === 1) {
+			numberLinesPerLevel = 0;
+			level++;
+			levelDisplay.innerText = "Level: " + level;
+			duration = duration - 100;
+		}
+		
+		// set level 3
+		if (numberLinesPerLevel >= 30 && level === 2) {
+			numberLinesPerLevel = 0;
+			level++;
+			levelDisplay.innerText = "Level: " + level;
+			duration = duration - 100;
+		}
 
-		scoreDisplay.innerText = "Score: " + score;
+		// set level 4
+		if (numberLinesPerLevel >= 40 && level === 3) {
+			numberLinesPerLevel = 0;
+			level++;
+			levelDisplay.innerText = "Level: " + level;
+			duration = duration - 100;
+		}
+
+		// set level 5
+		if (numberLinesPerLevel >= 50 && level === 4) {
+			numberLinesPerLevel = 0;
+			level++;
+			levelDisplay.innerText = "Level: " + level;
+			duration = duration - 100;
+		}
+
+		// set level 6
+		if (numberLinesPerLevel >= 60 && level === 5) {
+			numberLinesPerLevel = 0;
+			level++;
+			levelDisplay.innerText = "Level: " + level;
+			duration = duration - 100;
+		}
+
+		// set level 7
+		if (numberLinesPerLevel >= 70 && level === 6) {
+			numberLinesPerLevel = 0;
+			level++;
+			levelDisplay.innerText = "Level: " + level;
+			duration = duration - 100;
+		}
+
+		// set level 8
+		if (numberLinesPerLevel >= 80 && level === 7) {
+			numberLinesPerLevel = 0;
+			level++;
+			levelDisplay.innerText = "Level: " + level;
+			duration = duration - 100;
+		}
+
+		// set level 9
+		if (numberLinesPerLevel >= 90 && level === 8) {
+			numberLinesPerLevel = 0;
+			level++;
+			levelDisplay.innerText = "Level: " + level;
+			duration = duration - 100;
+		}
+
+		// set level 10
+		if (numberLinesPerLevel >= 100 && level === 9) {
+			numberLinesPerLevel = 0;
+			level++;
+			levelDisplay.innerText = "Level: " + level;
+			duration = duration - 100;
+		}
+
 		numberLines = 0;
 
 		// set tick
@@ -312,8 +392,15 @@ document.addEventListener("keydown", event => {
 playAgainButton.addEventListener("click", () => {
 	playground.innerHTML = ""; // clear grid
 	gameText.style.display = "none";
+	
+	duration = 1000;
 	score = 0; 
+	level = 0;
+	numberLinesPerLevel = 0;
+	
 	scoreDisplay.innerText = "Score: " + score;
+	levelDisplay.innerText = "Level: " + level;
+
 	init();
 });
 
