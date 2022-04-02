@@ -56,6 +56,9 @@ const pauseText = document.querySelector(".pause-text");
 const scoreDisplay = document.querySelector(".score");
 const levelDisplay = document.querySelector(".level");
 const playAgainButton = document.querySelector(".game-text > button");
+const soundTheme = new Audio("https://github.com/mbrignone93/TetrisJS/tree/main/sound/Tetris MainThem.mp3");
+
+soundTheme.play();
 
 const GAME_ROWS = 20;
 const GAME_COLS = 10;
